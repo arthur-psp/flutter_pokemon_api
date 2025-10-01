@@ -1,15 +1,17 @@
-class Pokemon {
-  int? id;
-  String? name;
-  int? height;
-  int? baseExperience;
-  String? imageFrontDefault;
-  int? weight;
+import 'package:app_podemon/pokemon/core/domain/model/pokemon.dart';
 
-  Pokemon({  this.id, this.name, this.height, this.baseExperience, this.imageFrontDefault, this.weight });
+class PokemonModel extends Pokemon {
+  PokemonModel({
+    required super.id,
+    required super.name,
+    required super.weight,
+    super.height,
+    super.baseExperience,
+    super.imageFrontDefault
+  });
 
-  static Pokemon fromJson(Map<String, dynamic> json) {
-    return Pokemon(
+  factory PokemonModel.fromJson(Map<String, dynamic> json) {
+    return PokemonModel(
       id: json['id'],
       name: (json['forms'] as List).isNotEmpty ? json['forms'][0]['name'] : json['name'],
       height: json['height'],
@@ -24,4 +26,3 @@ class Pokemon {
     return 'Pokemon(id: $id, name: $name, height: $height, baseExperience: $baseExperience, weight: $weight, image: $imageFrontDefault)';
   }
 }
-
